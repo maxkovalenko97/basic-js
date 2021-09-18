@@ -14,7 +14,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function transform(arr) {
-  // throw new NotImplementedError('Not implemented');
+  throw new NotImplementedError('Not implemented');
   if(!Array.isArray(arr)) {
     throw new Error("'arr' parameter must be an instance of the Array!");
   };
