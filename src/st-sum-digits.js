@@ -13,16 +13,6 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function getSumOfDigits(n) {
-  throw new NotImplementedError('Not implemented');
-  // if(n == 0 || n === "undefined" || n === null) { return 0};
-  // let arr = String(n).split('');
-  // let sum = 0;
-  //   for(let i=0; i<arr.length; i++){
-  //     sum +=+arr[i];
-  //   }
-  //   // if(String(sum).length > 1) {
-  //   if(sum > 9) {
-  //     getSumOfDigits(sum);
-  //   }
-  //   else return (sum);
+  n = String(String(n).split('').reduce(((sum,current) => sum + +current),0));
+  return (n.length == 1)? +n : getSumOfDigits(n);
 }

@@ -22,40 +22,16 @@ import { NotImplementedError } from '../extensions/index.js';
 export default class VigenereCipheringMachine {
   encrypt() { //str, key
       throw new NotImplementedError('Not implemented');
-    if(str == undefined || key == undefined) {
-      throw new Error('Incorrect arguments!');
-    }
-
-    let kf = Math.ceil(str.length / key.length);
-    key = key.repeat(kf).toUpperCase();
-    str = str.toUpperCase();
-
-    let codeA = 'A'.charCodeAt(0);
-    let alphabet = 26;
-
-    let result = [];
-
-    for (let i = 0; i < str.length; i++) {
-      if (str[i].charCodeAt > 90 || str[i].charCodeAt < 65) {
-        result.push(str[i]);
-      } else {
-        let letterIdx = str.charCodeAt(i) - codeA;
-        let shift = key.charCodeAt(i) - codeA;
-  
-        result.push(
-          String.fromCharCode( codeA + (letterIdx + shift) % alphabet )
-        );
+      if(str == undefined || key == undefined) {
+        throw new Error('Incorrect arguments!');
       }
-    }
-  
-    // remove line with error and write your code here
   }
-  decrypt() { // str, key
+  decrypt() { //str, key
     throw new NotImplementedError('Not implemented')
     if(str == undefined || key == undefined) {
       throw new Error('Incorrect arguments!');
     }
-    // throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 }
+
+
