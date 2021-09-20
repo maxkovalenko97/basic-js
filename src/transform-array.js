@@ -14,40 +14,50 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function transform(arr) {
-  throw new NotImplementedError('Not implemented');
-  if(!Array.isArray(arr)) {
-    throw new Error("'arr' parameter must be an instance of the Array!");
-  };
-  if(Array.isArray(arr) && arr.length === 0) { return arr;}
-  if(arr.length == 0) { return false};
-  if(arr.some(item => typeof (item) === 'boolean' || typeof (item) === "object")) { return arr;}
-  // if(arr.filter(item => typeof (item) === 'string').some(item => item !== '--discard-next' || item !== '--discard-prev' || item !== '--double-next' || item !== '--double-prev')) {return arr} 
+  // let sequences = ['--discard-next', '--discard-prev', '--double-next', '--double-prev'];
+  // // throw new NotImplementedError('Not implemented');
+  // if(!Array.isArray(arr)) {
+  //   throw new Error("'arr' parameter must be an instance of the Array!");
+  // };
+  // if(arr.length == 0) return [];
+  // if(arr.every(item => typeof item === 'number')) return arr;
+  // if(!(arr.includes(sequences[0]) || arr.includes(sequences[1]) || arr.includes(sequences[2]) || arr.includes(sequences[3]))) return arr;
 
-  let result = [];
+  // let result = [];
+  // for(let i=0; i<=arr.length; i++) {
+  //   if (i == 0 && (arr[i] === sequences[1] || arr[i] === sequences[3])) continue;
+  //   if(i == arr.length-1 && (arr[i] === sequences[0] || arr[i] === sequences[2])) continue;
+  //   if((arr[i] === sequences[0] || arr[i] === sequences[2]) && (arr[i+1] === arr[0] || arr[i+1] === arr[1] || arr[i+1] === arr[2] || arr[i+1] === arr[3])) continue;
+    
+  //   if((arr[i]) && arr[i] !== sequences[0] && arr[i] !== sequences[1] && arr[i] !== sequences[2] && arr[i] !== sequences[3]) result.push(arr[i]);
+  //   if(arr[i] === sequences[0])  {++i; continue;}
+  //   if(arr[i] === sequences[1])  {if(arr[i-2] == sequences[0]){continue} else result.pop(); continue;}
+  //   if(arr[i] === sequences[2])  {result.push(arr[i+1]); continue;}
+  //   if(arr[i] === sequences[3])  {if(arr[i-2] == sequences[0]){continue} else result.push(arr[i-1]); continue;}
+  // }
+  // return result;
 
-  for(let i=0; i<arr.length; i++) {
-    if (typeof(arr[i]) === 'number') { result.push(arr[i])}
-    else if (arr[i] === '--discard-next') {
-      if(typeof arr[i+1] !== 'number') { continue};
-    	++i;
-    	continue;
+  if (!Array.isArray(arr)) throw new Error("'arr' parameter must be an instance of the Array!");
+  let res = [];
+  for (let i=0; i<arr.length; i++){
+      switch (arr[i]) {
+        case '--discard-prev':
+          if(arr[i-2] == '--discard-next') continue;
+          if(i - 1 >= 0) res.pop();
+          break;
+        case '--discard-next':
+          if (i + 1 <= arr.length - 1) i++;
+          break;
+       case '--double-prev':
+        if(arr[i-2] == '--discard-next') continue;
+        if (i - 1 >= 0) res.push(arr[i-1]);
+          break;
+        case '--double-next':
+          if (i + 1 <= arr.length - 1) res.push(arr[i + 1]);
+          break;
+        default: res.push(arr[i]);
     }
-    else if(arr[i] === '--discard-prev') {
-      if (i == 0) {continue}; ///
-      if(typeof arr[i-1] !== 'number') { continue};
-      if(arr[i-2] === '--discard-next') { continue}
-    	result.pop();
-    }
-    else if(arr[i] === '--double-next') {
-      if(typeof arr[i+1] !== 'number') { continue};
-    	result.push(arr[i+1]);
-    }    
-    else if(arr[i] === '--double-prev') {
-      if(typeof arr[i-1] !== 'number') { continue};
-      if(arr[i-2] === '--discard-next') { continue}
-    	result.push(arr[i-1]);
-    }        
   }
-	return(result);
-  
-}
+  console.log(res);
+  return res;
+};
