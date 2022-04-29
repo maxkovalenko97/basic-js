@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given a number, replace this number with
@@ -12,7 +12,12 @@ import { NotImplementedError } from '../extensions/index.js';
  * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
  *
  */
-export default function getSumOfDigits(n) {
+
+function getSumOfDigits(n) {
   n = String(String(n).split('').reduce(((sum,current) => sum + +current),0));
   return (n.length == 1)? +n : getSumOfDigits(n);
 }
+
+module.exports = {
+  getSumOfDigits
+};
