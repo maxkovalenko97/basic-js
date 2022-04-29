@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
@@ -19,12 +19,12 @@ import { NotImplementedError } from '../extensions/index.js';
  * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
  * 
  */
-export default class VigenereCipheringMachine {
-  encrypt() { //str, key
-      throw new NotImplementedError('Not implemented');
-      if(str == undefined || key == undefined) {
-        throw new Error('Incorrect arguments!');
-      }
+class VigenereCipheringMachine {
+  encrypt() {
+    throw new NotImplementedError('Not implemented');
+    if(str == undefined || key == undefined) {
+      throw new Error('Incorrect arguments!');
+    }
   }
   decrypt() { //str, key
     throw new NotImplementedError('Not implemented')
@@ -34,4 +34,6 @@ export default class VigenereCipheringMachine {
   }
 }
 
-
+module.exports = {
+  VigenereCipheringMachine
+};

@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Create a repeating string based on the given parameters
@@ -15,7 +15,8 @@ import { NotImplementedError } from '../extensions/index.js';
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-export default function repeater(strp, options) {
+
+function repeater(str, options) {
   let arr = [];
   let str = String(strp);
   let separator = '+';
@@ -52,3 +53,7 @@ export default function repeater(strp, options) {
   console.log(arr.join(''));
   return(arr.join(''))
 }
+
+module.exports = {
+  repeater
+};
