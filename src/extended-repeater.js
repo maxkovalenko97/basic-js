@@ -3,7 +3,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 /**
  * Create a repeating string based on the given parameters
  *  
- * @param {String} str string to repeat
+ * @param {String} resStr string to repeat
  * @param {Object} options options object 
  * @return {String} repeating string
  * 
@@ -18,7 +18,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 
 function repeater(str, options) {
   let arr = [];
-  let str = String(strp);
+  let resStr = String(str);
   let separator = '+';
   if(options.separator) separator = options.separator;
   let additionSeparator = '|';
@@ -35,19 +35,19 @@ function repeater(str, options) {
   }
   else addition = String(options.addition);
 
-  if(!additionRepeatTimes) { str = str + addition};
+  if(!additionRepeatTimes) { resStr = resStr + addition};
   if(additionRepeatTimes >= 1) {
     addition = addition + additionSeparator;
     addition = addition.repeat(additionRepeatTimes);
     addition = addition.slice(0 , (addition.length - additionSeparator.length))
-    str = str + addition;
+    resStr = resStr + addition;
   }
 
-  if(repeatTimes == 1 || repeatTimes == 0) {console.log(str); return str}
+  if(repeatTimes == 1 || repeatTimes == 0) {console.log(resStr); return resStr}
   else {
       for(let i=0; i<repeatTimes; i++) {
-          if(i == repeatTimes-1) {arr.push(str)}
-          else {arr.push(str + separator)}
+          if(i == repeatTimes-1) {arr.push(resStr)}
+          else {arr.push(resStr + separator)}
       }    
   }
   console.log(arr.join(''));
